@@ -1,10 +1,8 @@
 let montoInicial, cuotas, montoFinal, indice;
 
 function calculadora() {
-  montoInicial = parseInt(
-    prompt("Ingresa el monto incial que queres financiar: ")
-  );
-  cuotas = parseInt(prompt("Ingresa en cuantas cuotas lo queres abonar: "));
+  montoInicial = parseInt(document.getElementById("monto"));
+  cuotas = parseInt(document.getElementById("cuota"));
 
   console.log(`Monto Inicial: ${montoInicial}`);
   console.log(`Cuotas: ${cuotas}`);
@@ -48,7 +46,6 @@ function interes(cuotas) {
   return indice;
 }
 
-calculadora();
 
 let montoHtml = document.getElementById("montoInicial").value = montoInicial;
 let cuotaHtml = document.getElementById("cuotas").value = cuotas;
@@ -56,3 +53,5 @@ let interesHtml = document.getElementById("interes").value = indice;
 let finalHtml = document.getElementById("final").value = montoFinal;
 
 alert(`El monto final es de: ${montoFinal}`);
+
+

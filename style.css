@@ -22,7 +22,7 @@ div {
     display: block;
 }
 
-#resultado {
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,4 +31,17 @@ div {
 input {
     width: 30%;
     text-align: center;
+}
+
+#submit {
+    width: 30%;
+    margin-top: 10px;
+    background-color: greenyellow;
+    border-radius: 5px;
+
+}
+
+#submit:hover {
+    background-color: indianred;
+
 }
