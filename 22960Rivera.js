@@ -1,57 +1,9 @@
-// let montoInicial, cuotas, montoFinal, indice;
-
-// function calculadora() {
-//   montoInicial = parseInt(prompt("Ingrese el monto inicial del prestamo:"));
-//   cuotas = parseInt(prompt("Ingrese la cantidad de cuotas para el prestamo:"));
-
-//   console.log(`Monto Inicial: ${montoInicial}`);
-//   console.log(`Cuotas: ${cuotas}`);
-
-//   indice = interes(cuotas);
-//   calcularInteres(montoInicial, indice);
-// }
-
-// Funcion para vincular el interes de acuerdo a las cuotas
-/*function interes(cuotas) {
-  switch (cuotas) {
-    case 1:
-      indice = 1.1;
-      break;
-    case 2:
-      indice = 1.2;
-      break;
-    case 3:
-      indice = 1.3;
-      break;
-    default:
-      alert("Ingrese una cantidad de cuotas valida.")
-      break;
-  }
-  return indice;
-}*/
-
-// funcion para calcular el interes del prestamo.
-// function calcularInteres(montoInicial, indice) {
-//   montoFinal = montoInicial * indice;
-//     console.log(`Monto Final: ${montoFinal}`);
-// }
-
-
-
-// calculadora();
-
-
-//RELACION AL DOM.
-// let montoHtml = document.getElementById("montoInicial").value = montoInicial;
-// let cuotaHtml = document.getElementById("cuotas").value = cuotas;
-// let interesHtml = document.getElementById("interes").value = indice;
-// let finalHtml = document.getElementById("final").value = montoFinal;
-
-//alert(`El monto final es de: ${montoFinal}`);
+const dniDeudores = [];
 
 class Prestamo {
-    constructor( nombre, monto, cuotas) {
+    constructor( nombre, dni, monto, cuotas) {
         this.nombre  = nombre ;
+        this.dni = dni;
         this.monto  = monto ;
         this.cuotas  = cuotas ;
         this.indice = 0 ;
@@ -71,28 +23,46 @@ class Prestamo {
         this.indice = 1.3
       } else {
         console.log(`Ingrese una cantidad de cuotas valida.`);
-      }
-    }
+      };
+    };
 
-    generar() {
+    calcularMontoFinal() {
         this.final = this.monto * this.indice;
-            
     };    
 
-}  
+    generar() {
+        dniDeudores.push(this.dni);
+    };
 
-//ejecución. 
+};  
 
-const prestamo1 = new Prestamo("Jorge", 10000, 3);
-const prestamo2 = new Prestamo("Alma", 100000, 2);
+//instanciar
+const prestamo1 = new Prestamo("Jorge", 29946811, 15000, 1);
+const prestamo2 = new Prestamo("Alma", 54996245,140000, 2);
+const prestamo3 = new Prestamo("Helena", 58252869, 153000, 2);
 
+//EJECUCIONES
 
+//prestamo1.presentar();
 prestamo1.calcularInteres();
+prestamo1.calcularMontoFinal();
 prestamo1.generar();
-console.log(prestamo1);
 
-prestamo2.calcularInteres()
+//prestamo2.presentar();
+prestamo2.calcularInteres();
+prestamo2.calcularMontoFinal();
 prestamo2.generar();
-console.log(prestamo2);
 
+//prestamo3.presentar();
+prestamo3.calcularInteres();
+prestamo3.calcularMontoFinal();
+prestamo3.generar();
 
+//PRESENTACIONES
+
+const informeDeudores = `Actualmente hay ${dniDeudores.length} deudores. Sus DNI son ${dniDeudores.join(", ")}.`;
+// console.log(prestamo1);
+// console.log(prestamo2);
+// console.log(prestamo3);
+
+console.log(informeDeudores);
