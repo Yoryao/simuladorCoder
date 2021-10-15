@@ -1,5 +1,8 @@
+
+//INCORPORAR UN ARRAY : REQUISITO DE LA ENTREGA. VER METODOS EN LINEA 65
 const dniDeudores = [];
 
+//DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
 class Prestamo {
     constructor( nombre, dni, monto, cuotas) {
         this.nombre  = nombre ;
@@ -10,10 +13,12 @@ class Prestamo {
         this.final = 0 ;
     };
       
+// PRESENTACION DE LA INFORMACION SIN MANIPULAR.
     presentar() {
         console.log(`SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`)
     };
 
+// DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
     calcularInteres() {
       if (this.cuotas == 1) {
         this.indice = 1.1;
@@ -26,14 +31,15 @@ class Prestamo {
       };
     };
 
+//CALCULAR EL MONTO FINAL DEL PRESTAMOS
     calcularMontoFinal() {
         this.final = this.monto * this.indice;
     };    
 
+//SE SOLICITA EL PRESTAMO, Y SE INGRESA EL DNI EN LA LISTA DE DEUDORES. 
     generar() {
         dniDeudores.push(this.dni);
     };
-
 };  
 
 //instanciar
@@ -43,26 +49,22 @@ const prestamo3 = new Prestamo("Helena", 58252869, 153000, 2);
 
 //EJECUCIONES
 
-//prestamo1.presentar();
 prestamo1.calcularInteres();
 prestamo1.calcularMontoFinal();
 prestamo1.generar();
 
-//prestamo2.presentar();
 prestamo2.calcularInteres();
 prestamo2.calcularMontoFinal();
 prestamo2.generar();
 
-//prestamo3.presentar();
 prestamo3.calcularInteres();
 prestamo3.calcularMontoFinal();
 prestamo3.generar();
 
 //PRESENTACIONES
+prestamo1.presentar();
+prestamo2.presentar();
+prestamo3.presentar();
 
 const informeDeudores = `Actualmente hay ${dniDeudores.length} deudores. Sus DNI son ${dniDeudores.join(", ")}.`;
-// console.log(prestamo1);
-// console.log(prestamo2);
-// console.log(prestamo3);
-
 console.log(informeDeudores);
