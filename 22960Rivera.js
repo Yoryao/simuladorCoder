@@ -23,9 +23,8 @@ class Prestamo {
         let interesDom = document.getElementById("interesInforme");
         interesDom.value = this.indice;
 
-
-
-
+        let presentacion = document.getElementById("presentar");
+        presentacion.innerText = `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`;
 
       };
 
@@ -98,3 +97,9 @@ function solicitar() {
 
 };
 
+let boton2 = document.getElementById("simular");
+boton2.addEventListener("click", simular)
+ 
+function simular() { prestamo.generar();
+}
+ 

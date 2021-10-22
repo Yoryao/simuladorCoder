@@ -44,15 +44,15 @@ input {
     text-align: center;
 }
 
-#submit {
-    width: 45%;
+#submitDatos, #simular {
+    width: 65%;
     margin-top: 10px;
     background-color: greenyellow;
     border-radius: 5px;
 
 }
 
-#submit:hover {
+#submitDatos:hover, #simular:hover {
     background-color: indianred;
 
 }
