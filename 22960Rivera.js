@@ -1,4 +1,3 @@
-
 //INCORPORAR UN ARRAY : REQUISITO DE LA ENTREGA. VER METODOS EN LINEA 65
 const dniDeudores = [];
 
@@ -50,36 +49,17 @@ class Prestamo {
         finalDom.value = this.final;
     };    
 
-//SE SOLICITA EL PRESTAMO, Y SE INGRESA EL DNI EN LA LISTA DE DEUDORES. 
+//SE SOLICITA EL PRESTAMO, Y SE INGRESA EL DNI EN LA LISTA DE DEUDORES.
+//ACA ESTOY TIRANDO FRUTA, PORQUE ME CARGA 2 VECES EL DNI Y NO SE PORQUE. 
     generar() {
+      if (!dniDeudores.includes(this.dni)){
         dniDeudores.push(this.dni);
+      } else {
+        console.log("Ya esta ingresado al registro de deudores.")
+      }  
     };
 };  
 
-//instanciar
-//const prestamo3 = new Prestamo("Helena", 58252869, 153000, 2);
-
-//EJECUCIONES
-
-// prestamo1.calcularInteres();
-// prestamo1.calcularMontoFinal();
-// prestamo1.generar();
-
-// // prestamo2.calcularInteres();
-// prestamo2.calcularMontoFinal();
-// prestamo2.generar();
-
-// prestamo3.calcularInteres();
-// prestamo3.calcularMontoFinal();
-// prestamo3.generar();
-
-//PRESENTACIONES
-//prestamo1.presentar();
-// prestamo2.presentar();
-// prestamo3.presentar();
-
-// const informeDeudores = `Actualmente hay ${dniDeudores.length} deudores. Sus DNI son ${dniDeudores.join(", ")}.`;
-// console.log(informeDeudores);
 
 let boton = document.getElementById("submitDatos");
 boton.addEventListener("click", solicitar)
@@ -93,13 +73,49 @@ function solicitar() {
   const prestamo = new Prestamo(nombre, dni, monto, cuotas);
   
   prestamo.calcularInteres();
+  prestamo.calcularMontoFinal();
   prestamo.presentar();
+  
+  //ESTOY LEVANTANDO LOS DATOS DEL PRIMER FORMULARIO
+  let boton2 = document.getElementById("generar");
+  boton2.addEventListener("click", generar);
 
+
+  function generar() {
+  
+    prestamo.generar();
+    console.log(dniDeudores);
+    
+  };
+
+};  
+
+let boton3 = document.getElementById("mostrarDeudores");
+  boton3.addEventListener("click", mostrarDeudores);
+
+function mostrarDeudores() {
+let  tabla = document.getElementById("deudores");
+
+for (let i = 0; i < dniDeudores.length; i++) {
+ 
+  let fila = document.createElement("li");
+  fila.innerHTML = dniDeudores[i];
+  tabla.appendChild(fila);
+  };
 };
 
-let boton2 = document.getElementById("simular");
-boton2.addEventListener("click", simular)
- 
-function simular() { prestamo.generar();
-}
- 
+
+/*SOLICITUD DEL CLIENTE: jorge solicita 1 $ en 1 cuotas.
+22960Rivera.js:87 ["29"]
+22960Rivera.js:17 SOLICITUD DEL CLIENTE: Romina solicita 2 $ en 2 cuotas.
+22960Rivera.js:58 Ya esta ingresado al registro de deudores.
+22960Rivera.js:87 ["29"]
+22960Rivera.js:87 (2) ["29", "33"]
+22960Rivera.js:17 SOLICITUD DEL CLIENTE: Alma solicita 3 $ en 3 cuotas.
+22960Rivera.js:58 Ya esta ingresado al registro de deudores.
+22960Rivera.js:87 (2) ["29", "33"]
+22960Rivera.js:58 Ya esta ingresado al registro de deudores.
+22960Rivera.js:87 (2) ["29", "33"]
+22960Rivera.js:87 (3) ["29", "33", "54"]
+*/
+
