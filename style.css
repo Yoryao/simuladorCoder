@@ -40,12 +40,12 @@ form {
 }
 
 input {
-    width: 50%;
+    width: 75%;
     text-align: center;
 }
 
 #submit {
-    width: 30%;
+    width: 45%;
     margin-top: 10px;
     background-color: greenyellow;
     border-radius: 5px;

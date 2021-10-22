@@ -12,15 +12,21 @@ class Prestamo {
         this.indice = 0 ;
         this.final = 0 ;
     };
-      
-// PRESENTACION DE LA INFORMACION SIN MANIPULAR.
+    
+    // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
     presentar() {
         console.log(`SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`);
         let montoDom = document.getElementById("montoInicialInforme");
         montoDom.value = this.monto;
         let cuotasDom = document.getElementById("cuotasInforme");
         cuotasDom.value = this.cuotas;
-    
+        let interesDom = document.getElementById("interesInforme");
+        interesDom.value = this.indice;
+
+
+
+
+
       };
 
 // DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
@@ -52,17 +58,15 @@ class Prestamo {
 };  
 
 //instanciar
-const prestamo1 = new Prestamo("Jorge", 29946811, 15000, 1);
-const prestamo2 = new Prestamo("Alma", 54996245,140000, 2);
-const prestamo3 = new Prestamo("Helena", 58252869, 153000, 2);
+//const prestamo3 = new Prestamo("Helena", 58252869, 153000, 2);
 
 //EJECUCIONES
 
-prestamo1.calcularInteres();
-prestamo1.calcularMontoFinal();
-prestamo1.generar();
+// prestamo1.calcularInteres();
+// prestamo1.calcularMontoFinal();
+// prestamo1.generar();
 
-// prestamo2.calcularInteres();
+// // prestamo2.calcularInteres();
 // prestamo2.calcularMontoFinal();
 // prestamo2.generar();
 
@@ -71,9 +75,26 @@ prestamo1.generar();
 // prestamo3.generar();
 
 //PRESENTACIONES
-prestamo1.presentar();
+//prestamo1.presentar();
 // prestamo2.presentar();
 // prestamo3.presentar();
 
-const informeDeudores = `Actualmente hay ${dniDeudores.length} deudores. Sus DNI son ${dniDeudores.join(", ")}.`;
-console.log(informeDeudores);
+// const informeDeudores = `Actualmente hay ${dniDeudores.length} deudores. Sus DNI son ${dniDeudores.join(", ")}.`;
+// console.log(informeDeudores);
+
+let boton = document.getElementById("submitDatos");
+boton.addEventListener("click", solicitar)
+ 
+function solicitar() {
+  let nombre = document.getElementById("nombre").value;
+  let dni =    document.getElementById("dni").value;
+  let monto =  document.getElementById("monto").value;
+  let cuotas = document.getElementById("cuotas").value;
+  
+  const prestamo = new Prestamo(nombre, dni, monto, cuotas);
+  
+  prestamo.calcularInteres();
+  prestamo.presentar();
+
+};
+

@@ -20,20 +20,23 @@
         <div id="resultado">
             <h3>Calculos</h3>
 
+
+            <!-- cambiar el primer form para solicitar prestamos
+             -->
             <form>
-                <label>Monto $:
+                <label for="nombre">Nombre:
                 </label>
-                <input type="number" name="monto" id="montoInicial" value="" placeholder="Ingrese el valor">
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                <label>DNI
+                </label>
+                <input type="number" name="dni" id="dni" placeholder="Ingrese su DNI">
+                <label>Monto:
+                </label>
+                <input type="number" name="interes" id="monto"  placeholder="Ingrese el valor">
                 <label>Cuotas:
                 </label>
-                <input type="number" name="cuotas" id="cuotas" value="" placeholder="Ingrese el valor">
-                <label>Interes:
-                </label>
-                <input type="number" name="interes" id="interes" value="" placeholder="Ingrese el valor">
-                <label>Monto Final:
-                </label>
-                <input type="number" name="final" id="final" value="" placeholder="Ingrese el valor">
-                <input type="submit" name="submit" id="submit" value="Calcular tu Cuota" onclick=calculadora()>
+                <input type="number" name="final" id="cuotas"  placeholder="Ingrese el valor">
+                <input type="button" name="button" id="submitDatos" value="Calcular tu Cuota">
             </form>
         </div>
 
@@ -53,7 +56,7 @@
                 <label>Monto Final:
                 </label>
                 <input type="number" name="finalInforme" id="finalInforme" value="" >
-                <input type="submit" name="submit" id="submit" value="Calcular tu Cuota" onclick=calculadora()>
+                <input type="button" name="button" id="simular" value="Calcular tu Cuota">
             </form>
         </div>
     </div>
