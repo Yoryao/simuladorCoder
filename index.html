@@ -16,27 +16,50 @@
     <h1>CUOTY YA</h1>
     <h3>Calcula tu cuota y tu interes</h3>
 
+    <div id="contenedor">
+        <div id="resultado">
+            <h3>Calculos</h3>
 
-    <div id="resultado">
-        <form>
-        <label>Monto $:
-        </label>
-        <input type="number" name="monto" id="montoInicial" value="" placeholder="Ingrese el valor" >
-        <label>Cuotas:
-        </label>
-        <input type="number" name="cuotas" id="cuotas" value="" placeholder="Ingrese el valor" >
-        <label>Interes:
-        </label>
-        <input type="number" name="interes" id="interes" value="" placeholder="Ingrese el valor" >
-        <label>Monto Final:
-        </label>
-        <input type="number" name="final" id="final" value="" placeholder="Ingrese el valor" >
-        <input type="submit" name="submit" id="submit" value="Calcular tu Cuota" onclick=calculadora()>
-    </form>
+            <form>
+                <label>Monto $:
+                </label>
+                <input type="number" name="monto" id="montoInicial" value="" placeholder="Ingrese el valor">
+                <label>Cuotas:
+                </label>
+                <input type="number" name="cuotas" id="cuotas" value="" placeholder="Ingrese el valor">
+                <label>Interes:
+                </label>
+                <input type="number" name="interes" id="interes" value="" placeholder="Ingrese el valor">
+                <label>Monto Final:
+                </label>
+                <input type="number" name="final" id="final" value="" placeholder="Ingrese el valor">
+                <input type="submit" name="submit" id="submit" value="Calcular tu Cuota" onclick=calculadora()>
+            </form>
+        </div>
+
+        <div id="informe">
+            <h3>Informe</h3>
+            
+            <form>
+                <label>Monto Solicitado $:
+                </label>
+                <input type="number" name="montoInforme" id="montoInicialInforme" value="">
+                <label>Cuotas Solicitadas:
+                </label>
+                <input type="number" name="cuotasInforme" id="cuotasInforme" value="" >
+                <label>Interes:
+                </label>
+                <input type="number" name="interesInforme" id="interesInforme" value="" >
+                <label>Monto Final:
+                </label>
+                <input type="number" name="finalInforme" id="finalInforme" value="" >
+                <input type="submit" name="submit" id="submit" value="Calcular tu Cuota" onclick=calculadora()>
+            </form>
+        </div>
     </div>
 
     <script src="./22960Rivera.js"></script>
 
-    </body>
+</body>
 
 </html>
