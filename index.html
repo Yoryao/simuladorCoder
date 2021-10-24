@@ -18,7 +18,7 @@
 
     <div id="contenedor">
         <div id="resultado">
-            <h3>Calculos</h3>
+            <h3>CALCULOS</h3>
 
 
             <!-- cambiar el primer form para solicitar prestamos
@@ -32,40 +32,42 @@
                 <input type="number" name="dni" id="dni" placeholder="Ingrese su DNI">
                 <label>Monto:
                 </label>
-                <input type="number" name="interes" id="monto"  placeholder="Ingrese el valor">
+                <input type="number" name="interes" id="monto" placeholder="Ingrese el valor">
                 <label>Cuotas:
                 </label>
-                <input type="number" name="final" id="cuotas"  placeholder="Ingrese el valor">
+                <input type="number" name="final" id="cuotas" placeholder="Ingrese el valor" min="1" max="3">
                 <input type="button" name="button" id="submitDatos" value="Calcular tu Cuota">
             </form>
         </div>
 
         <div id="informe">
             <h3>SIMULACIÓN</h3>
-            
+
             <form>
                 <label>Monto Solicitado $:
                 </label>
                 <input type="number" name="montoInforme" id="montoInicialInforme" value="">
                 <label>Cuotas Solicitadas:
                 </label>
-                <input type="number" name="cuotasInforme" id="cuotasInforme" value="" >
+                <input type="number" name="cuotasInforme" id="cuotasInforme" value="">
                 <label>Interes:
                 </label>
-                <input type="number" name="interesInforme" id="interesInforme" value="" >
+                <input type="number" name="interesInforme" id="interesInforme" value="">
                 <label>Monto Final:
                 </label>
-                <input type="number" name="finalInforme" id="finalInforme" value="" >
-                <input type="button" name="button2" id="generar" value="solicitar">
+                <input type="number" name="finalInforme" id="finalInforme" value="">
+                <input type="button" name="button2" id="generar" value="Solicitar el prestamo.">
             </form>
         </div>
     </div>
 
-    <h3 id="presentar">INFORMACIÓN DEL CLIENTE</h3>
-    
-    <h3 id="deudores">DNI DEUDORES</h3>
-    <input type="button" name="button3" id="mostrarDeudores" value="Mostrar Deudores">
 
+    <div id="info">
+        <h3>INFORMACIÓN DEL CLIENTE</h3>
+        <h4 id="presentar">Información sobre Nombre, monto y cuota</h4>
+        <h3 id="deudores">DNI DEUDORES</h3>
+        <input type="button" name="button3" id="mostrarDeudores" value="Mostrar Deudores">
+    </div>
 
 
     <script src="./22960Rivera.js"></script>

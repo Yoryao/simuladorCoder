@@ -33,7 +33,7 @@ form {
     align-items: center;
 }
 
-#informe {
+#informe, #info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +44,7 @@ input {
     text-align: center;
 }
 
-#submitDatos, #simular {
+#submitDatos, #generar, #mostrarDeudores {
     width: 65%;
     margin-top: 10px;
     background-color: greenyellow;
@@ -52,7 +52,7 @@ input {
 
 }
 
-#submitDatos:hover, #simular:hover {
+#submitDatos:hover, #generar:hover, #mostrarDeudores:hover {
     background-color: indianred;
 
 }
