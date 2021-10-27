@@ -1,5 +1,8 @@
+
+
 //INCORPORAR UN ARRAY : REQUISITO DE LA ENTREGA.
 const dniDeudores = [];
+const deudores = [];
 
 //DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
 class Prestamo {
@@ -19,14 +22,6 @@ class Prestamo {
     console.log(
       `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`
     );
-    
-    //CAPTURO LOS ELEMENTOS EN EL DOM Y LOS VINCULO A LAS PROPIEDADES DEL OBJETO.
-    let montoDom = document.getElementById("montoInicialInforme");
-    montoDom.value = this.monto;
-    let cuotasDom = document.getElementById("cuotasInforme");
-    cuotasDom.value = this.cuotas;
-    let interesDom = document.getElementById("interesInforme");
-    interesDom.value = this.indice;
 
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
     let presentacion = document.getElementById("presentar");
@@ -45,16 +40,19 @@ class Prestamo {
       console.log(`Ingrese una cantidad de cuotas valida.`);
       alert(`Ingrese una cantidad de cuotas valida.`);
     }
-    
-    let interesDom = document.getElementById("interesInforme");
-    interesDom.value = this.indice;
   }
 
   //CALCULAR EL MONTO FINAL DEL PRESTAMOS
   calcularMontoFinal() {
     this.final = this.monto * this.indice;
-    let finalDom = document.getElementById("finalInforme");
-    finalDom.value = this.final;
+
+    const div = document.getElementById("int&Monto");
+        div.innerHTML = `  <label>Interes:</label><br>
+                           <input type="number" name="interesInforme" id="interesInforme" value="${this.indice}"readonly><br>
+                           <label>Monto Final:</label><br>
+                          <input type="number" name="finalInforme"
+    id="finalInforme" value="${this.final}" readonly>`
+
   }
 
   //SE SOLICITA EL PRESTAMO, Y SE INGRESA EL DNI EN LA LISTA DE DEUDORES.
@@ -62,12 +60,13 @@ class Prestamo {
   generar() {
     if (!dniDeudores.includes(this.dni)) {
       dniDeudores.push(this.dni);
+      deudores.push(this.prestamo);
      this.deudor = true;
      } else {
-      console.log("Ya esta ingresado al registro de deudores.");
+      console.log("Ya esta ingresado al registro de deudores. No otorgar crédito");
     };
-    console.log(this.deudor);
-  };
+
+};
 };
 
 
@@ -99,11 +98,13 @@ function solicitar() {
 
 function mostrarDeudores() {
   let tabla = document.getElementById("deudores");
-  
+  document.removeChild("fila");
+
   for (let i = 0; i < dniDeudores.length; i++) {
     let fila = document.createElement("li");
     fila.innerHTML = dniDeudores[i];
     tabla.appendChild(fila);
+    
   }
 }
 
