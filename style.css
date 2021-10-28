@@ -46,7 +46,7 @@ input {
     text-align: center;
 }
 
-#submitDatos, #generar, #mostrarDeudores {
+#calcular, #generar, #mostrarDeudores {
     width: 65%;
     margin-top: 10px;
     background-color: greenyellow;
@@ -54,7 +54,7 @@ input {
 
 }
 
-#submitDatos:hover, #generar:hover, #mostrarDeudores:hover {
+#calcular:hover, #generar:hover, #mostrarDeudores:hover {
     background-color: indianred;
 
 }
