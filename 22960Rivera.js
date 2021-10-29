@@ -1,21 +1,45 @@
 //BOTONES + EVENTOS
 
+//BOTON SIMULAR PRESTAMOS
+let btnSim = document.getElementById("simular");
+btnSim.addEventListener("click", simular);
 
-let boton = document.getElementById("calcular");
-boton.addEventListener("click", simular);
+//BOTON SOLICITAR PRESTAMO
+let btnSol = document.getElementById("solicitar");
+btnSol.addEventListener("click", generar);
 
-let boton3 = document.getElementById("mostrarDeudores");
-boton3.addEventListener("click", mostrarDeudores);
+//BOTON MOSTRAR DEUDORES
+let btnMos = document.getElementById("mostrar");
+btnMos.addEventListener("click", () => {
+  for (let i = 0; i < dniDeudores.length; i++) {
+    let lista = document.getElementById("deudores");
+    let tabla = document.createElement("table");
+    let fila = document.createElement("li");
+    tabla.id = "tablaId";
+    fila.innerHTML = dniDeudores[i];
 
-//ESTOY LEVANTANDO LOS DATOS DEL PRIMER FORMULARIO
-let boton2 = document.getElementById("generar");
-boton2.addEventListener("click", generar);
+    tabla.appendChild(fila);
+    lista.appendChild(tabla);
+  }
+});
 
-//INCORPORAR UN ARRAY : REQUISITO DE LA ENTREGA.
+//BOTON BORRAR DEUDORES
+let btnBor = document.getElementById("borrar");
+btnBor.addEventListener("click", () => {
+ 
+    for (let i = 0; i < dniDeudores.length; i++) {
+      let lista1 = document.getElementById("deudores");
+      let lista = document.getElementById("tablaId");
+      lista1.removeChild(lista);
+    }
+  }
+);
+
+// USO DE ARRAYS.
 const dniDeudores = [];
 const deudores = [];
 
-//DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
+//DECLARACION DE CLASE PARA INSTANCIAR SIMULACIONES.
 class Simulacion {
   constructor(nombre, dni, monto, cuotas) {
     this.nombre = nombre;
@@ -25,17 +49,16 @@ class Simulacion {
     this.indice = 0;
     this.final = 0;
     this.deudor = false;
-  }
+  };
 
   // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
   presentar() {
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
     let presentacion = document.getElementById("presentar");
     presentacion.innerText = `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`;
-  }
+  };
 
   // DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
-  // VALIDAR INGRESO ERROR EN CUOTAS - USAR SWITCH
   calcularInteres() {
     if (this.cuotas == 1) {
       this.indice = 1.1;
@@ -46,7 +69,7 @@ class Simulacion {
     } else {
       alert(`Ingrese una cantidad de cuotas valida.`);
     }
-  }
+  };
 
   //CALCULAR EL MONTO FINAL DEL PRESTAMOS
   calcularMontoFinal() {
@@ -61,6 +84,7 @@ class Simulacion {
   }
 }
 
+//DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
 class Prestamo {
   constructor(nombre, dni, monto, cuotas, indice, final) {
     this.nombre = nombre;
@@ -116,39 +140,4 @@ function generar() {
     dniDeudores.push(dni);
     console.log(deudores);
   }
-}
-
-//funcion para ir agregando el ultimo deudor a la lista.
-function mostrarDeudores() {
-  if (dniDeudores.length < 0) {
-    let lista1 = document.getElementById("deudores");
-    let lista = document.getElementById("tablaId");
-    lista1.removeChild(lista);
-      } else {
-    let index = dniDeudores.length;
-
-    let lista = document.getElementById("deudores");
-    let tabla = document.createElement("table");
-    let fila = document.createElement("li");
-    tabla.id = "tablaId";
-    fila.innerHTML = dniDeudores[index - 1];
-
-    tabla.appendChild(fila);
-    lista.appendChild(tabla);
-  }
-}
-//INGRESO EL OBJETO CREADO EN EL ARRAY DE OBJETOS - DEUDORES
-
-// //funcion para ir agregando el ultimo deudor a la lista.
-// function mostrarDeudores() {
-//   let index = dniDeudores.length;
-
-//   let lista = document.getElementById("deudores");
-//   let tabla = document.createElement("table");
-//   let fila = document.createElement("li");
-
-//   fila.innerHTML = dniDeudores[index - 1];
-
-//   tabla.appendChild(fila);
-//   lista.appendChild(tabla);
-// }
+};
