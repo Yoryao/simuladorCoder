@@ -1,10 +1,22 @@
+//BOTONES + EVENTOS
+
+
+let boton = document.getElementById("calcular");
+boton.addEventListener("click", simular);
+
+let boton3 = document.getElementById("mostrarDeudores");
+boton3.addEventListener("click", mostrarDeudores);
+
+//ESTOY LEVANTANDO LOS DATOS DEL PRIMER FORMULARIO
+let boton2 = document.getElementById("generar");
+boton2.addEventListener("click", generar);
 
 //INCORPORAR UN ARRAY : REQUISITO DE LA ENTREGA.
 const dniDeudores = [];
 const deudores = [];
 
 //DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
-class Prestamo {
+class Simulacion {
   constructor(nombre, dni, monto, cuotas) {
     this.nombre = nombre;
     this.dni = dni;
@@ -42,101 +54,101 @@ class Prestamo {
 
     const div = document.getElementById("int&Monto");
     div.innerHTML = `  <label>Interes:</label><br>
-                           <input type="number" name="interesInforme" id="interesInforme" value="${this.indice}"readonly><br>
+                           <input type="number" name="interesInforme" id="indice" value="${this.indice}"readonly><br>
                            <label>Monto Final:</label><br>
                           <input type="number" name="finalInforme"
-    id="finalInforme" value="${this.final}" readonly>`;
+    id="final" value="${this.final}" readonly>`;
+  }
+}
+
+class Prestamo {
+  constructor(nombre, dni, monto, cuotas, indice, final) {
+    this.nombre = nombre;
+    this.dni = dni;
+    this.monto = monto;
+    this.cuotas = cuotas;
+    this.indice = indice;
+    this.final = final;
+    this.deudor = true;
   }
 
-  //SE SOLICITA EL PRESTAMO, Y SE INGRESA EL DNI EN LA LISTA DE DEUDORES.
-  //ACA ESTOY TIRANDO FRUTA, PORQUE ME CARGA 2 VECES EL DNI Y NO SE PORQUE.
-  //for discord
-  // generar() {
-  //   if (!dniDeudores.includes(this.dni)) {
-  //     let flag = this.dni;
-  //     dniDeudores.push(flag);
-  //     console.log("thisDni: " + this.dni);
-  //     console.log("dniDeudores: " + dniDeudores);
-  //     console.log("Dar credito");
-  //     deudores.push(this.prestamo);
-  //   } else {
-  //     console.log("DNI.DEUDORES: " + dniDeudores);
-  //     console.log(this.dni);
-         
-     
-     
-  //     console.log(
-  //       "Ya esta ingresado al registro de deudores. No otorgar crédito"
-  //     );
-  //   }
-  // }
+  // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
+  presentar() {
+    //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
+    let presentacion = document.getElementById("presentar");
+    presentacion.innerText = `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`;
+  }
 }
 
 //MANEJO DE EVENTOS A TRAVES DE LOS BOTONES.
 //FUNCIONES
 
-function solicitar() {
-let  nombre = document.getElementById("nombre").value;
-let  dni = document.getElementById("dni").value;
-let  monto = document.getElementById("monto").value;
-let  cuotas = document.getElementById("cuotas").value;
+function simular() {
+  let nombre = document.getElementById("nombre").value;
+  let dni = document.getElementById("dni").value;
+  let monto = document.getElementById("monto").value;
+  let cuotas = document.getElementById("cuotas").value;
 
-  const prestamo = new Prestamo(nombre, dni, monto, cuotas);
+  const prestamoSimulado = new Simulacion(nombre, dni, monto, cuotas);
 
-  prestamo.calcularInteres();
-  prestamo.calcularMontoFinal();
-  prestamo.presentar();
-
+  prestamoSimulado.presentar();
+  prestamoSimulado.calcularInteres();
+  prestamoSimulado.calcularMontoFinal();
 }
-//BOTONES + EVENTOS
-
-let boton = document.getElementById("calcular");
-boton.addEventListener("click", solicitar);
-
-let boton3 = document.getElementById("mostrarDeudores");
-boton3.addEventListener("click", mostrarDeudores);
-
-//ESTOY LEVANTANDO LOS DATOS DEL PRIMER FORMULARIO
-let boton2 = document.getElementById("generar");
-boton2.addEventListener("click", generar);
-
-//INGRESO EL OBJETO CREADO EN EL ARRAY DE OBJETOS - DEUDORES
 
 function generar() {
+  let nombre = document.getElementById("nombre").value;
+  let dni = document.getElementById("dni").value;
+  let monto = document.getElementById("monto").value;
+  let cuotas = document.getElementById("cuotas").value;
+  let indice = document.getElementById("indice").value;
+  let final = document.getElementById("final").value;
 
-  let  nombre = document.getElementById("nombre").value;
-  let  dni = document.getElementById("dni").value;
-  let  monto = document.getElementById("monto").value;
-  let  cuotas = document.getElementById("cuotas").value;
+  const deudor = new Prestamo(nombre, dni, monto, cuotas, indice, final);
 
-  
-    const deudor = new Prestamo(nombre, dni, monto, cuotas);
- 
-    
-    
-   deudor.calcularInteres();
-   deudor.calcularMontoFinal();
-   deudor.presentar();  
-    
-      if (dniDeudores.includes(dni) ) {
-        console.log("Es un deudor, no otorgar crédito.");
-    
-      } else {
-        console.log("dar credito");
-        deudores.push(deudor);
-        dniDeudores.push(dni);
-        console.log(deudores)
-      }
-    };
+  deudor.presentar();
 
-
-function mostrarDeudores() {
-
-  
-  for (let i = 0; i < dniDeudores.length; i++) {
-    let tabla = document.getElementById("deudores");
-        let fila = document.createElement("li");
-    fila.innerHTML = dniDeudores[i];
-    tabla.appendChild(fila);
+  if (dniDeudores.includes(dni)) {
+    console.log("Es un deudor, no otorgar crédito.");
+  } else {
+    console.log("dar credito");
+    deudores.push(deudor);
+    dniDeudores.push(dni);
+    console.log(deudores);
   }
 }
+
+//funcion para ir agregando el ultimo deudor a la lista.
+function mostrarDeudores() {
+  if (dniDeudores.length < 0) {
+    let lista1 = document.getElementById("deudores");
+    let lista = document.getElementById("tablaId");
+    lista1.removeChild(lista);
+      } else {
+    let index = dniDeudores.length;
+
+    let lista = document.getElementById("deudores");
+    let tabla = document.createElement("table");
+    let fila = document.createElement("li");
+    tabla.id = "tablaId";
+    fila.innerHTML = dniDeudores[index - 1];
+
+    tabla.appendChild(fila);
+    lista.appendChild(tabla);
+  }
+}
+//INGRESO EL OBJETO CREADO EN EL ARRAY DE OBJETOS - DEUDORES
+
+// //funcion para ir agregando el ultimo deudor a la lista.
+// function mostrarDeudores() {
+//   let index = dniDeudores.length;
+
+//   let lista = document.getElementById("deudores");
+//   let tabla = document.createElement("table");
+//   let fila = document.createElement("li");
+
+//   fila.innerHTML = dniDeudores[index - 1];
+
+//   tabla.appendChild(fila);
+//   lista.appendChild(tabla);
+// }
