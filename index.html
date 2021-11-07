@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="jquery-3.6.0.js"></script>
     <title>CUOTY YA</title>
 </head>
 
@@ -34,25 +35,37 @@
                 </label>
                 <input type="number" name="cuotas" id="cuotas" placeholder="Ingrese el valor" min="1" max="3">
 
-                <div id="int&Monto">
+                <div id="calculos">
                 </div>
                 <input type="button" name="button" id="simular" value="Calcular tu Cuota">
                 <input type="button" name="button2" id="solicitar" value="Solicitar el prestamo.">
             </form>
         </div>
-        
-    <div id="info">
-        <h3>INFORMACIÓN DEL CLIENTE</h3>
-        <h4 id="presentar">Información sobre Nombre, monto y cuota</h4>
-        <h3 id="deudores">DNI DEUDORES</h3>
-        <input type="button" name="button3" id="mostrar" value="Mostrar Deudores">
-        <input type="button" name="button4" id="borrar" value="Borrar Deudores">
+
+        <div id="info">
+            <div>
+                <h3>INFORMACIÓN DEL CLIENTE</h3>
+                <h4 id="infoCliente">Información sobre Nombre, monto y cuota</h4>
+            </div>
+
+            <div>
+                <h3>INFORMACIÓN DEL PRESTAMO</h3>
+                <h4 id="infoPrestamo">Información sobre Nombre, monto y cuota</h4>
+            </div>
+
+
+
+
+            <div>
+                <h3 id="deudores">DNI DEUDORES</h3>
+                <input type="button" name="button3" id="mostrar" value="Mostrar Deudores">
+                <input type="button" name="button4" id="borrar" value="Borrar Deudores">
+            </div>
+        </div>
     </div>
-</div>
-    
 
-    <script src="./22960Rivera.js"></script>
 
+    <script src="22960Rivera.js"></script>
 </body>
 
 </html>

@@ -46,7 +46,7 @@ input {
     text-align: center;
 }
 
-#calcular, #generar, #mostrarDeudores {
+#simular, #solicitar, #mostrar, #borrar  {
     width: 65%;
     margin-top: 10px;
     background-color: greenyellow;
@@ -54,7 +54,11 @@ input {
 
 }
 
-#calcular:hover, #generar:hover, #mostrarDeudores:hover {
+#simular:hover, #solicitar:hover, #mostrar:hover, #borrar:hover {
     background-color: indianred;
 
+}
+
+.red {
+    border: 2px red solid;
 }

@@ -1,16 +1,44 @@
 //BOTONES + EVENTOS
 
 //BOTON SIMULAR PRESTAMOS
-let btnSim = document.getElementById("simular");
-btnSim.addEventListener("click", simular);
+$("#simular").click(function() {
+  
+  let nombre = $("#nombre").val();
+  let dni = $("#dni").val();
+  let monto = $("#monto").val();
+  let cuotas = $("#cuotas").val();
+  
+  const prestamoSimulado = new Simulacion(nombre, dni, monto, cuotas);
+  
+  prestamoSimulado.presentar();
+  prestamoSimulado.calcularInteres();
+  prestamoSimulado.calcularMontoFinal();
+  
+});
 
 //BOTON SOLICITAR PRESTAMO
-let btnSol = document.getElementById("solicitar");
-btnSol.addEventListener("click", generar);
+$("#solicitar").click(function() {
+  let nombre = $("#nombre").val();
+  let dni = $("#dni").val();
+  let monto = $("#monto").val();
+  let cuotas = $("#cuotas").val();
+  let indice = $("#indice").val();
+  let final = $("#final").val();
 
-//BOTON MOSTRAR DEUDORES
-let btnMos = document.getElementById("mostrar");
-btnMos.addEventListener("click", () => {
+  const deudor = new Prestamo(nombre, dni, monto, cuotas, indice, final);
+
+  deudor.presentar();
+
+  if (dniDeudores.includes(dni)) {
+    $("#infoCliente").text("Es un deudor, no otorgar crédito.");
+  } else {
+    $("#infoCliente").text("No posee deudas, otorgar crédito.");
+    deudores.push(deudor);
+    dniDeudores.push(dni);
+  }
+});
+
+$("#mostrar").click(function() {
   for (let i = 0; i < dniDeudores.length; i++) {
     let lista = document.getElementById("deudores");
     let tabla = document.createElement("table");
@@ -23,17 +51,13 @@ btnMos.addEventListener("click", () => {
   }
 });
 
-//BOTON BORRAR DEUDORES
-let btnBor = document.getElementById("borrar");
-btnBor.addEventListener("click", () => {
- 
-    for (let i = 0; i < dniDeudores.length; i++) {
-      let lista1 = document.getElementById("deudores");
-      let lista = document.getElementById("tablaId");
-      lista1.removeChild(lista);
-    }
+$("#borrar").click(function(){
+  for (let i = 0; i < dniDeudores.length; i++) {
+    let lista1 = document.getElementById("deudores");
+    let lista = document.getElementById("tablaId");
+    lista1.removeChild(lista);
   }
-);
+});
 
 // USO DE ARRAYS.
 const dniDeudores = [];
@@ -46,43 +70,59 @@ class Simulacion {
     this.dni = dni;
     this.monto = monto;
     this.cuotas = cuotas;
-    this.indice = 0;
-    this.final = 0;
-    this.deudor = false;
-  };
+  }
 
   // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
   presentar() {
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
-    let presentacion = document.getElementById("presentar");
-    presentacion.innerText = `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`;
-  };
+    $("#infoCliente").text(`SOLICITUD DEL CLIENTE: ${this.nombre} 
+                            solicita ${this.monto} $ 
+                            en ${this.cuotas} cuotas.`);
+  }
 
   // DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
   calcularInteres() {
-    if (this.cuotas == 1) {
-      this.indice = 1.1;
-    } else if (this.cuotas == 2) {
-      this.indice = 1.2;
-    } else if (this.cuotas == 3) {
-      this.indice = 1.3;
-    } else {
-      alert(`Ingrese una cantidad de cuotas valida.`);
+    console.log(this.cuotas);
+    let cuotas = parseInt(this.cuotas);
+    switch (cuotas) {
+      case 1:
+      case 2:
+      case 3:
+        this.indice = 1.1;
+        break;
+      case 4:
+      case 5:
+      case 6:
+        this.indice = 1.2;
+        break;
+      case 7:
+      case 8:
+      case 9:
+        this.indice = 1.3;
+        break;
+      case 10:
+      case 11:
+      case 12:
+        this.indice = 1.4;
+        break;
+      default:
+        alert("Debe ingresar un numero de cuotas valido: 1 a 12.");
+        break;
     }
-  };
-
+    console.log(cuotas);
+    console.log(this.indice);
+  }
   //CALCULAR EL MONTO FINAL DEL PRESTAMOS
   calcularMontoFinal() {
     this.final = this.monto * this.indice;
-
-    const div = document.getElementById("int&Monto");
-    div.innerHTML = `  <label>Interes:</label><br>
-                           <input type="number" name="interesInforme" id="indice" value="${this.indice}"readonly><br>
-                           <label>Monto Final:</label><br>
-                          <input type="number" name="finalInforme"
-    id="final" value="${this.final}" readonly>`;
+    $("#calculos").append(`<label>Interes:</label><br>
+                         <input type="number" name="interesInforme" 
+                            id="indice" value="${this.indice}"readonly><br>
+                         <label>Monto Final:</label><br>
+                         <input type="number" name="finalInforme"
+                            id="final" value="${this.final}" readonly>`);
   }
-}
+};
 
 //DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
 class Prestamo {
@@ -96,48 +136,10 @@ class Prestamo {
     this.deudor = true;
   }
 
-  // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
+  // PRESENTACION DE LA INFORMACION SIN MANIPULAR CON JQUERY.
   presentar() {
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
-    let presentacion = document.getElementById("presentar");
-    presentacion.innerText = `SOLICITUD DEL CLIENTE: ${this.nombre} solicita ${this.monto} $ en ${this.cuotas} cuotas.`;
-  }
-}
-
-//MANEJO DE EVENTOS A TRAVES DE LOS BOTONES.
-//FUNCIONES
-
-function simular() {
-  let nombre = document.getElementById("nombre").value;
-  let dni = document.getElementById("dni").value;
-  let monto = document.getElementById("monto").value;
-  let cuotas = document.getElementById("cuotas").value;
-
-  const prestamoSimulado = new Simulacion(nombre, dni, monto, cuotas);
-
-  prestamoSimulado.presentar();
-  prestamoSimulado.calcularInteres();
-  prestamoSimulado.calcularMontoFinal();
-}
-
-function generar() {
-  let nombre = document.getElementById("nombre").value;
-  let dni = document.getElementById("dni").value;
-  let monto = document.getElementById("monto").value;
-  let cuotas = document.getElementById("cuotas").value;
-  let indice = document.getElementById("indice").value;
-  let final = document.getElementById("final").value;
-
-  const deudor = new Prestamo(nombre, dni, monto, cuotas, indice, final);
-
-  deudor.presentar();
-
-  if (dniDeudores.includes(dni)) {
-    console.log("Es un deudor, no otorgar crédito.");
-  } else {
-    console.log("dar credito");
-    deudores.push(deudor);
-    dniDeudores.push(dni);
-    console.log(deudores);
+    $("#infoPrestamo").text(`OTORGADO AL CLIENTE: ${this.nombre} recibio ${this.monto} $ 
+                            a pagar en  ${this.cuotas} cuotas.`);
   }
 };
