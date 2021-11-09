@@ -1,23 +1,21 @@
 //BOTONES + EVENTOS
 
 //BOTON SIMULAR PRESTAMOS
-$("#simular").click(function() {
-  
+$("#simular").click(function () {
   let nombre = $("#nombre").val();
   let dni = $("#dni").val();
   let monto = $("#monto").val();
   let cuotas = $("#cuotas").val();
-  
+
   const prestamoSimulado = new Simulacion(nombre, dni, monto, cuotas);
-  
+
   prestamoSimulado.presentar();
   prestamoSimulado.calcularInteres();
   prestamoSimulado.calcularMontoFinal();
-  
 });
 
 //BOTON SOLICITAR PRESTAMO
-$("#solicitar").click(function() {
+$("#solicitar").click(function () {
   let nombre = $("#nombre").val();
   let dni = $("#dni").val();
   let monto = $("#monto").val();
@@ -38,25 +36,19 @@ $("#solicitar").click(function() {
   }
 });
 
-$("#mostrar").click(function() {
-  for (let i = 0; i < dniDeudores.length; i++) {
-    let lista = document.getElementById("deudores");
-    let tabla = document.createElement("table");
-    let fila = document.createElement("li");
-    tabla.id = "tablaId";
-    fila.innerHTML = dniDeudores[i];
+$("#mostrar").click(function () {
+  $("#dniDeudores").empty();
 
-    tabla.appendChild(fila);
-    lista.appendChild(tabla);
+  for (let i = 0; i < dniDeudores.length; i++) {
+    $("#dniDeudores").append(`<table id="tablaId"><tr>
+                                <td>Nombre: ${deudores[i].nombre}</td>
+                                <td> DNI: ${deudores[i].dni}</td>
+                              </tr></table>`);
   }
 });
 
-$("#borrar").click(function(){
-  for (let i = 0; i < dniDeudores.length; i++) {
-    let lista1 = document.getElementById("deudores");
-    let lista = document.getElementById("tablaId");
-    lista1.removeChild(lista);
-  }
+$("#borrar").click(function () {
+    $("#dniDeudores").empty();  
 });
 
 // USO DE ARRAYS.
@@ -82,7 +74,6 @@ class Simulacion {
 
   // DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
   calcularInteres() {
-    console.log(this.cuotas);
     let cuotas = parseInt(this.cuotas);
     switch (cuotas) {
       case 1:
@@ -106,14 +97,13 @@ class Simulacion {
         this.indice = 1.4;
         break;
       default:
-        alert("Debe ingresar un numero de cuotas valido: 1 a 12.");
+        $("#infoCliente").text("Debe ingresar un numero de cuotas valido: 1 a 12.");
         break;
     }
-    console.log(cuotas);
-    console.log(this.indice);
-  }
+  };
   //CALCULAR EL MONTO FINAL DEL PRESTAMOS
   calcularMontoFinal() {
+    $("#calculos").empty();
     this.final = this.monto * this.indice;
     $("#calculos").append(`<label>Interes:</label><br>
                          <input type="number" name="interesInforme" 
@@ -121,7 +111,7 @@ class Simulacion {
                          <label>Monto Final:</label><br>
                          <input type="number" name="finalInforme"
                             id="final" value="${this.final}" readonly>`);
-  }
+  };
 };
 
 //DECLARACION DE CLASE PARA INSTANCIAR PRESTAMOS.
@@ -139,7 +129,8 @@ class Prestamo {
   // PRESENTACION DE LA INFORMACION SIN MANIPULAR CON JQUERY.
   presentar() {
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
-    $("#infoPrestamo").text(`OTORGADO AL CLIENTE: ${this.nombre} recibio ${this.monto} $ 
+    $("#infoPrestamo")
+      .text(`OTORGADO AL CLIENTE: ${this.nombre} recibio ${this.monto} $ 
                             a pagar en  ${this.cuotas} cuotas.`);
   }
 };
