@@ -36,6 +36,7 @@ $("#solicitar").click(function () {
   }
 });
 
+//FUNCION MOSTRAR DEUDORES. 
 $("#mostrar").click(function () {
   $("#dniDeudores").empty();
 
@@ -47,6 +48,7 @@ $("#mostrar").click(function () {
   }
 });
 
+//FUNCION OCULTAR DEUDORES
 $("#borrar").click(function () {
     $("#dniDeudores").empty();  
 });
@@ -62,16 +64,14 @@ class Simulacion {
     this.dni = dni;
     this.monto = monto;
     this.cuotas = cuotas;
-  }
-
+  };
   // PRESENTACION DE LA INFORMACION SIN MANIPULAR.
   presentar() {
     //PRESENTO LA INFORMACIÓN SOBRE EL HTML A TRAVEZ DEL DOM.
     $("#infoCliente").text(`SOLICITUD DEL CLIENTE: ${this.nombre} 
                             solicita ${this.monto} $ 
                             en ${this.cuotas} cuotas.`);
-  }
-
+  };
   // DECLARAR VALOR DE INDICE EN BASE A CUOTAS.
   calcularInteres() {
     let cuotas = parseInt(this.cuotas);
@@ -124,7 +124,7 @@ class Prestamo {
     this.indice = indice;
     this.final = final;
     this.deudor = true;
-  }
+  };
 
   // PRESENTACION DE LA INFORMACION SIN MANIPULAR CON JQUERY.
   presentar() {
@@ -132,5 +132,5 @@ class Prestamo {
     $("#infoPrestamo")
       .text(`OTORGADO AL CLIENTE: ${this.nombre} recibio ${this.monto} $ 
                             a pagar en  ${this.cuotas} cuotas.`);
-  }
+  };
 };
