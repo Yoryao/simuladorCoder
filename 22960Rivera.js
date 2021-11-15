@@ -27,8 +27,23 @@ $("#solicitar").click(function () {
 
   deudor.presentar();
 
+
   if (dniDeudores.includes(dni)) {
-    $("#infoCliente").text("Es un deudor, no otorgar crédito.");
+    $("#alertaDeudor").text("Es un deudor, no otorgar crédito.");
+    $("#infoCliente").empty();
+    $("#alertaDeudor").css({
+      "background-color" : "yellow",
+      "color" : "black",
+      "width" : "250px",
+      "height" : "250px"
+    })
+    .fadeIn(2000)
+    .fadeOut(2000)
+    .fadeIn(2000)
+    .fadeOut(2000)
+    .fadeIn(2000)
+    .slideUp(4000);
+
   } else {
     $("#infoCliente").text("No posee deudas, otorgar crédito.");
     deudores.push(deudor);
@@ -53,6 +68,19 @@ $("#borrar").click(function () {
     $("#dniDeudores").empty();  
 });
 
+//FUNCION BORRAR DATOS
+
+$("#reset").click(function () {
+  $("#nombre").val("");
+  $("#dni").val("");
+  $("#monto").val("");
+  $("#cuotas").val("");
+  $("#final").val("");
+  $("#indice").val("");
+$("#infoCliente").text("");
+$("#infoPrestamo").text("");
+console.log("remove la clase!")
+})
 // USO DE ARRAYS.
 const dniDeudores = [];
 const deudores = [];

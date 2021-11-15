@@ -46,7 +46,7 @@ input {
     text-align: center;
 }
 
-#simular, #solicitar, #mostrar, #borrar  {
+.btn  {
     width: 65%;
     margin-top: 10px;
     background-color: greenyellow;
@@ -54,7 +54,7 @@ input {
 
 }
 
-#simular:hover, #solicitar:hover, #mostrar:hover, #borrar:hover {
+.btn:hover {
     background-color: indianred;
 
 }
@@ -62,3 +62,17 @@ input {
 .red {
     border: 2px red solid;
 }
+
+.alertaDeudor{
+background-color: black;
+color: red;
+}
+
+h5 {
+
+    background-color:red;
+    color: black;
+    width: 500;
+    height: 250;
+    font-size: 30px
+    }
