@@ -1,0 +1,14 @@
+[
+  {"cuotas" : 1 , "interes" : 1.10 },
+  {"cuotas" : 2 , "interes" : 1.10 },
+  {"cuotas" : 3 , "interes" : 1.20 },
+  {"cuotas" : 4 , "interes" : 1.20 },
+  {"cuotas" : 5 , "interes" : 1.30 },
+  {"cuotas" : 6 , "interes" : 1.30 },
+  {"cuotas" : 7 , "interes" : 1.40 },
+  {"cuotas" : 8 , "interes" : 1.40 },
+  {"cuotas" : 9 , "interes" : 1.50 },
+  {"cuotas" : 10 , "interes" : 1.50 },
+  {"cuotas" : 11 , "interes" : 1.60 },
+  {"cuotas" : 12 , "interes" : 1.60 }
+]
